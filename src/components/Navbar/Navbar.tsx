@@ -10,6 +10,7 @@ import {
   RightItems,
 } from './styles/Navbar'
 import arrow from '../../images/arrow.svg'
+import { Routes, NavbarLinks } from '../../utils/types'
 
 interface Props {
   children: ReactNode
@@ -18,6 +19,11 @@ interface Props {
 interface ImgProps {
   alt: string
   src: string
+}
+
+interface LinkProps {
+  to: Routes
+  children: NavbarLinks
 }
 
 const Navbar = ({ children }: Props) => {
@@ -36,15 +42,15 @@ const NavbarMenuItems = ({ children }: Props) => {
   return <MenuItems>{children}</MenuItems>
 }
 
-const NavbarButtonLink = ({ children }: Props) => {
-  return <ButtonLink>{children}</ButtonLink>
+const NavbarButtonLink = ({ to, children }: LinkProps) => {
+  return <ButtonLink to={to}>{children}</ButtonLink>
 }
 
-const NavbarLogin = ({ children }: Props) => {
+const NavbarLogin = () => {
   return (
     <LoginWrapper>
-      <ButtonLink role="link" href="#" aria-label="Log in">
-        {children}
+      <ButtonLink role="link" to={Routes.Login} aria-label={NavbarLinks.LogIn}>
+        {NavbarLinks.LogIn}
       </ButtonLink>
       <Img alt="login" src={arrow} />
     </LoginWrapper>

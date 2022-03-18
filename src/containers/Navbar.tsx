@@ -5,7 +5,7 @@ const NavbarContainer = () => {
   return (
     <Navbar>
       <Navbar.Img alt="logo" src={logo} />
-      <Navbar.Login>Log in</Navbar.Login>
+      <Navbar.Login />
     </Navbar>
   )
 }

@@ -1,7 +1,8 @@
 import styled from 'styled-components/macro'
+import { Link } from 'react-router-dom'
 
 export const Container = styled.nav`
-  width: 100%;
+  width: 100vw;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -20,7 +21,7 @@ export const MenuItems = styled.div``
 
 export const RightItems = styled.div``
 
-export const ButtonLink = styled.a`
+export const ButtonLink = styled(Link)`
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
