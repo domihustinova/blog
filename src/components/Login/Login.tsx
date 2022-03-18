@@ -17,7 +17,7 @@ interface InputProps {
   autoComplete: string
 }
 
-export const Login = ({ children }: Props) => {
+const Login = ({ children }: Props) => {
   return <Container>{children}</Container>
 }
 
@@ -64,3 +64,5 @@ Login.Form = LoginForm
 Login.Input = LoginInput
 Login.SubmitButton = LoginSubmitButton
 Login.Title = LoginTitle
+
+export default Login
