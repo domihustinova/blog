@@ -10,6 +10,7 @@ export enum NavbarLinks {
   MyArticles = 'My Articles',
   Create = 'Create Article',
   LogIn = 'Log in',
+  LogOut = 'Log out',
 }
 
 export enum AuthReducerActionTypes {

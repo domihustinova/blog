@@ -36,6 +36,23 @@ export const ButtonLink = styled(Link)`
   }
 `
 
+export const LogoutButtonLink = styled.button`
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #2b7efb;
+  transition: all 0.3s ease-in-out;
+  text-decoration: none;
+  border: none;
+  background-color: transparent;
+
+  &:hover,
+  &:focus {
+    outline: none;
+    color: #274472;
+  }
+`
+
 export const LoginWrapper = styled.div`
   display: flex;
   align-items: center;

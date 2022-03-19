@@ -6,6 +6,7 @@ import {
   Frame,
   Img,
   LoginWrapper,
+  LogoutButtonLink,
   MenuItems,
   RightItems,
 } from './styles/Navbar'
@@ -21,9 +22,13 @@ interface ImgProps {
   src: string
 }
 
-interface LinkProps {
+interface ButtonLinkProps {
   to: Routes
   children: NavbarLinks
+}
+
+interface LogoutButtonProps {
+  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void
 }
 
 const Navbar = ({ children }: Props) => {
@@ -42,7 +47,7 @@ const NavbarMenuItems = ({ children }: Props) => {
   return <MenuItems>{children}</MenuItems>
 }
 
-const NavbarButtonLink = ({ to, children }: LinkProps) => {
+const NavbarButtonLink = ({ to, children }: ButtonLinkProps) => {
   return <ButtonLink to={to}>{children}</ButtonLink>
 }
 
@@ -57,6 +62,17 @@ const NavbarLogin = () => {
   )
 }
 
+const NavbarLogout = ({ onClick }: LogoutButtonProps) => {
+  return (
+    <LoginWrapper>
+      <LogoutButtonLink type="button" onClick={onClick}>
+        {NavbarLinks.LogOut}
+      </LogoutButtonLink>
+      <Img alt="login" src={arrow} />
+    </LoginWrapper>
+  )
+}
+
 const NavbarImg = ({ alt, src }: ImgProps) => {
   return <Img alt={alt} src={src} />
 }
@@ -64,6 +80,7 @@ const NavbarImg = ({ alt, src }: ImgProps) => {
 Navbar.MenuItems = NavbarMenuItems
 Navbar.RightItems = NavbarRightItems
 Navbar.Login = NavbarLogin
+Navbar.Logout = NavbarLogout
 Navbar.ButtonLink = NavbarButtonLink
 Navbar.Img = NavbarImg
 

@@ -18,9 +18,14 @@ export async function loginUser(dispatch: any, loginPayload: LoginPayload) {
       type: AuthReducerActionTypes.LoginSuccess,
       ua_token: response.data.access_token,
     })
-    document.cookie = `ua_token=${response.data.access_token}; max-age=${response.data.expires_in}`
+    document.cookie = `ua_token=${response.data.access_token}; max-age=${response.data.expires_in}; path=/`
     return response
   } catch (error: any) {
     dispatch({ type: AuthReducerActionTypes.LoginError, error: error.response.data })
   }
+}
+
+export async function logout(dispatch: any) {
+  dispatch({ type: AuthReducerActionTypes.Logout })
+  document.cookie = 'ua_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/'
 }
