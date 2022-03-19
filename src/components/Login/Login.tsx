@@ -17,6 +17,11 @@ interface InputProps {
   autoComplete: string
 }
 
+interface ButtonProps {
+  children: ReactNode
+  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void
+}
+
 const Login = ({ children }: Props) => {
   return <Container>{children}</Container>
 }
@@ -56,8 +61,12 @@ const LoginInput = ({
   )
 }
 
-const LoginSubmitButton = ({ children }: Props) => {
-  return <Button type="submit">{children}</Button>
+const LoginSubmitButton = ({ onClick, children }: ButtonProps) => {
+  return (
+    <Button type="submit" onClick={onClick}>
+      {children}
+    </Button>
+  )
 }
 
 Login.Form = LoginForm
