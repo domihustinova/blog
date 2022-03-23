@@ -1,4 +1,5 @@
 export enum Routes {
+  CreateArticle = '/create-article',
   Home = '/',
   Login = '/login',
   MyArticles = '/my-articles',
@@ -8,7 +9,7 @@ export enum Routes {
 export enum NavbarLinks {
   Recent = 'Recent Articles',
   MyArticles = 'My Articles',
-  Create = 'Create Article',
+  CreateArticle = 'Create Article',
   LogIn = 'Log in',
   LogOut = 'Log out',
 }

@@ -3,6 +3,7 @@ import { Routes as ReactRouterRoutes, Route, Navigate, Outlet } from 'react-rout
 import { useAuthState } from '../context'
 import { Routes } from '../types'
 import LoginPage from '../../pages/Login'
+import CreateArticlePage from '../../pages/CreateArticle'
 import MyArticlesPage from '../../pages/MyArticles'
 import RecentArticlesPage from '../../pages/RecentArticles'
 import ArticlePage from '../../pages/Article'
@@ -23,6 +24,14 @@ const RoutesRedirect = () => {
         element={
           <ProtectedRoute>
             <MyArticlesPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path={Routes.CreateArticle}
+        element={
+          <ProtectedRoute>
+            <CreateArticlePage />
           </ProtectedRoute>
         }
       />
