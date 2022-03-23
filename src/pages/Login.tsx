@@ -30,7 +30,7 @@ const LoginPage = () => {
       <NavbarContainer />
       <Login>
         <Login.Title>Log In</Login.Title>
-        {errorMessage && errorMessage.message}
+        {errorMessage && <Login.Error error={errorMessage.message} />}
         <Login.Form>
           <Login.Input
             id="username"

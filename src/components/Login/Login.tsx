@@ -1,6 +1,6 @@
 import type { ReactNode, HTMLInputTypeAttribute } from 'react'
 
-import { Button, Container, Form, Input, InputWrapper, Label, Title } from './styles/Login'
+import { Button, Container, Error, Form, Input, InputWrapper, Label, Title } from './styles/Login'
 
 interface Props {
   children: ReactNode
@@ -32,6 +32,10 @@ const LoginTitle = ({ children }: Props) => {
 
 const LoginForm = ({ children }: Props) => {
   return <Form>{children}</Form>
+}
+
+const LoginError = ({ error }: { error: string }) => {
+  return <Error>{error}</Error>
 }
 
 const LoginInput = ({
@@ -68,8 +72,8 @@ const LoginSubmitButton = ({ onClick, children }: ButtonProps) => {
     </Button>
   )
 }
-
 Login.Form = LoginForm
+Login.Error = LoginError
 Login.Input = LoginInput
 Login.SubmitButton = LoginSubmitButton
 Login.Title = LoginTitle

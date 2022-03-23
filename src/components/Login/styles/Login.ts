@@ -31,7 +31,7 @@ export const Label = styled.label`
 `
 
 export const Input = styled.input`
-  padding: 6px;
+  padding: 6px 12px;
   width: 304px;
   height: 36px;
   background: #ffffff;
@@ -74,4 +74,11 @@ export const Button = styled.button`
 
 export const Form = styled.form`
   text-align: right;
+`
+
+export const Error = styled.div`
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #dc3545;
 `
