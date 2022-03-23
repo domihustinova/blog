@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import type { ImgHTMLAttributes, ReactNode } from 'react'
 
 import {
   ButtonLink,
@@ -17,14 +17,9 @@ interface Props {
   children: ReactNode
 }
 
-interface ImgProps {
-  alt: string
-  src: string
-}
-
 interface ButtonLinkProps {
   to: Routes
-  children: NavbarLinks
+  children: string
 }
 
 interface LogoutButtonProps {
@@ -73,7 +68,7 @@ const NavbarLogout = ({ onClick }: LogoutButtonProps) => {
   )
 }
 
-const NavbarImg = ({ alt, src }: ImgProps) => {
+const NavbarImg = ({ alt, src }: ImgHTMLAttributes<HTMLImageElement>) => {
   return <Img alt={alt} src={src} />
 }
 

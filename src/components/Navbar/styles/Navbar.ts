@@ -2,24 +2,40 @@ import styled from 'styled-components/macro'
 import { Link } from 'react-router-dom'
 
 export const Container = styled.nav`
-  width: 100vw;
+  width: 100%;
+  height: 56px;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 56px;
+  padding: 0 20px;
   background-color: #f8f9fa;
   border-radius: 4px;
 `
 
 export const Frame = styled.div`
-  width: 1152px;
+  width: 100%;
+  max-width: 1152px;
   display: flex;
   justify-content: space-between;
 `
 
-export const MenuItems = styled.div``
+export const MenuItems = styled.div`
+  display: flex;
+  align-items: center;
 
-export const RightItems = styled.div``
+  a {
+    margin-left: 40px;
+  }
+`
+
+export const RightItems = styled.div`
+  display: flex;
+  align-items: center;
+
+  a {
+    margin-right: 40px;
+  }
+`
 
 export const ButtonLink = styled(Link)`
   font-weight: 400;
