@@ -3,8 +3,9 @@ import { Routes as ReactRouterRoutes, Route, Navigate, Outlet } from 'react-rout
 import { useAuthState } from '../context'
 import { Routes } from '../types'
 import LoginPage from '../../pages/Login'
-import RecentArticlesPage from '../../pages/RecentArticles'
 import MyArticlesPage from '../../pages/MyArticles'
+import RecentArticlesPage from '../../pages/RecentArticles'
+import ArticlePage from '../../pages/Article'
 
 const RoutesRedirect = () => {
   const { ua_token } = useAuthState()
@@ -16,6 +17,7 @@ const RoutesRedirect = () => {
         path={Routes.Login}
         element={ua_token ? <Navigate to={Routes.MyArticles} replace /> : <LoginPage />}
       />
+      <Route path="/article/:articleId" element={<ArticlePage />} />
       <Route
         path={Routes.MyArticles}
         element={
