@@ -1,5 +1,7 @@
 import styled from 'styled-components/macro'
 
+import { DEVICES_MAX } from '../../../theme/consts'
+
 export const Container = styled.div`
   width: 368px;
   padding: 32px 32px 25px 32px;
@@ -7,6 +9,10 @@ export const Container = styled.div`
   margin-top: 64px;
   box-shadow: 0px 16px 48px rgba(0, 0, 0, 0.175);
   border-radius: 8px;
+
+  @media ${DEVICES_MAX.TABLET} {
+    box-shadow: none;
+  }
 `
 
 export const Title = styled.h3`

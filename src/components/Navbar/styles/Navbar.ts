@@ -1,6 +1,8 @@
 import styled from 'styled-components/macro'
 import { Link } from 'react-router-dom'
 
+import { DEVICES_MAX, DEVICES_MIN } from '../../../theme/consts'
+
 export const Container = styled.nav`
   width: 100%;
   height: 56px;
@@ -23,8 +25,10 @@ export const MenuItems = styled.div`
   display: flex;
   align-items: center;
 
-  a {
-    margin-left: 40px;
+  @media ${DEVICES_MIN.TABLET} {
+    a {
+      margin-left: 40px;
+    }
   }
 `
 
@@ -33,13 +37,19 @@ export const RightItems = styled.div`
   align-items: center;
 
   a {
-    margin-right: 40px;
+    margin-right: 10px;
+  }
+
+  @media ${DEVICES_MIN.TABLET} {
+    a {
+      margin-right: 40px;
+    }
   }
 `
 
 export const ButtonLink = styled(Link)`
   font-weight: 400;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 24px;
   color: #2b7efb;
   transition: all 0.3s ease-in-out;
@@ -50,11 +60,15 @@ export const ButtonLink = styled(Link)`
     outline: none;
     color: #274472;
   }
+
+  @media ${DEVICES_MIN.TABLET} {
+    font-size: 16px;
+  }
 `
 
 export const LogoutButtonLink = styled.button`
   font-weight: 400;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 24px;
   color: #2b7efb;
   transition: all 0.3s ease-in-out;
@@ -67,6 +81,10 @@ export const LogoutButtonLink = styled.button`
     outline: none;
     color: #274472;
   }
+
+  @media ${DEVICES_MIN.TABLET} {
+    font-size: 16px;
+  }
 `
 
 export const LoginWrapper = styled.div`
@@ -74,4 +92,8 @@ export const LoginWrapper = styled.div`
   align-items: center;
 `
 
-export const Img = styled.img``
+export const Img = styled.img`
+  @media ${DEVICES_MAX.TABLET} {
+    display: none;
+  }
+`

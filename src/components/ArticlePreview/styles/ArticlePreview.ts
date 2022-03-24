@@ -4,27 +4,45 @@
 import styled from 'styled-components/macro'
 import { Link } from 'react-router-dom'
 
+import { DEVICES_MIN } from '../../../theme/consts'
+
 export const Container = styled.div`
-  margin: 0 auto;
-  width: 860px;
-  height: 244px;
+  width: 375px;
+  height: 100%;
   margin-bottom: 32px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+
+  @media ${DEVICES_MIN.TABLET} {
+    width: 860px;
+    height: 244px;
+    flex-direction: row;
+  }
 `
 
 export const PageTitle = styled.h1`
   text-align: left;
-  margin-top: 64px;
-  margin-bottom: 60px;
+  margin-top: 32px;
+  margin-bottom: 30px;
+
+  @media ${DEVICES_MIN.TABLET} {
+    margin-top: 64px;
+    margin-bottom: 60px;
+  }
 `
 
 export const PageWrapper = styled.div`
-  margin: 0 auto;
-  padding: 16px;
-  width: 860px;
   display: flex;
   flex-direction: column;
+  width: 375px;
+  align-items: center;
+  padding: 8px;
+  margin: 0 auto;
+
+  @media ${DEVICES_MIN.TABLET} {
+    padding: 0px;
+    width: 860px;
+  }
 `
 
 export const Title = styled.h4`
@@ -33,10 +51,14 @@ export const Title = styled.h4`
 `
 
 export const Content = styled.div`
-  width: 560px;
+  width: 350px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+
+  @media ${DEVICES_MIN.TABLET} {
+    width: 560px;
+  }
 `
 
 export const InfoWrapper = styled.div`
@@ -87,5 +109,9 @@ export const Image = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center bottom;
-  margin-right: 24px;
+  margin: 16px auto;
+
+  @media ${DEVICES_MIN.TABLET} {
+    margin-right: 24px;
+  }
 `

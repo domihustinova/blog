@@ -1,22 +1,41 @@
 import styled from 'styled-components/macro'
 
+import { DEVICES_MIN } from '../../../theme/consts'
+
 export const Container = styled.div`
+  width: 375px;
   margin: 0 auto;
-  width: 760px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
+
+  @media ${DEVICES_MIN.TABLET} {
+    width: 760px;
+    padding: 0;
+  }
 `
 
 export const TitleWrapper = styled.div`
   width: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   margin-top: 48px;
   margin-bottom: 40px;
+
+  @media ${DEVICES_MIN.TABLET} {
+    width: 760px;
+    flex-direction: row;
+  }
 `
 
 export const Title = styled.h1`
-  margin-right: 32px;
+  margin-bottom: 16px;
+
+  @media ${DEVICES_MIN.TABLET} {
+    margin-right: 32px;
+    margin-bottom: 0px;
+  }
 `
 
 export const InputWrapper = styled.div`
@@ -35,7 +54,7 @@ export const Label = styled.label`
 
 export const Input = styled.input`
   padding: 16px;
-  width: 760px;
+  width: 355px;
   height: 46px;
   background: #ffffff;
   border: 1px solid #dfdfdf;
@@ -51,11 +70,15 @@ export const Input = styled.input`
   &::placeholder {
     color: #6c757d;
   }
+
+  @media ${DEVICES_MIN.TABLET} {
+    width: 760px;
+  }
 `
 
 export const InputContent = styled.textarea`
   padding: 16px;
-  width: 760px;
+  width: 355px;
   height: 400px;
   background: #ffffff;
   border: 1px solid #dfdfdf;
@@ -70,6 +93,10 @@ export const InputContent = styled.textarea`
 
   &::placeholder {
     color: #6c757d;
+  }
+
+  @media ${DEVICES_MIN.TABLET} {
+    width: 760px;
   }
 `
 
@@ -173,13 +200,18 @@ export const PreviewWrapper = styled.div`
 export const Preview = styled.div`
   width: 100%;
   height: 100%;
-  min-width: 760px;
+  min-width: 355px;
   min-height: 400px;
   padding: 16px;
   margin-bottom: 32px;
   border: 1px solid #dfdfdf;
   border-radius: 4px;
   font-size: 17px;
+
+  @media ${DEVICES_MIN.TABLET} {
+    width: 760px;
+    flex-direction: row;
+  }
 `
 
 export const PreviewButton = styled.button`

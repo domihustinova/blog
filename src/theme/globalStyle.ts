@@ -1,5 +1,7 @@
 import { createGlobalStyle } from 'styled-components/macro'
 
+import { DEVICES_MIN } from './consts'
+
 export const GlobalStyle = createGlobalStyle`
 
   html {
@@ -34,8 +36,13 @@ export const GlobalStyle = createGlobalStyle`
 
   h1 {
     font-weight: 500;
-    font-size: 40px;
+    font-size: 32px;
     line-height: 48px;
+
+    @media ${DEVICES_MIN.TABLET} {
+    font-size: 40px;
+    text-align: left;
+  }
 	}
 
   h3 {
