@@ -1,4 +1,4 @@
-import type { ReactNode, HTMLInputTypeAttribute } from 'react'
+import type { ReactNode, InputHTMLAttributes, FormHTMLAttributes } from 'react'
 
 import { Button, Container, Error, Form, Input, InputWrapper, Label, Title } from './styles/Login'
 
@@ -6,20 +6,13 @@ interface Props {
   children: ReactNode
 }
 
-interface InputProps {
-  id: string
-  name: string
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string
-  value: string
-  type: HTMLInputTypeAttribute
-  placeholder: string
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
-  autoComplete: string
 }
 
 interface ButtonProps {
+  type: 'submit' | 'reset' | 'button'
   children: ReactNode
-  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void
 }
 
 const Login = ({ children }: Props) => {
@@ -30,47 +23,25 @@ const LoginTitle = ({ children }: Props) => {
   return <Title>{children}</Title>
 }
 
-const LoginForm = ({ children }: Props) => {
-  return <Form>{children}</Form>
+const LoginForm = ({ onSubmit, children }: FormHTMLAttributes<HTMLFormElement>) => {
+  return <Form onSubmit={onSubmit}>{children}</Form>
 }
 
 const LoginError = ({ error }: { error: string }) => {
   return <Error>{error}</Error>
 }
 
-const LoginInput = ({
-  id,
-  name,
-  label,
-  value,
-  type,
-  placeholder,
-  onChange,
-  autoComplete,
-}: InputProps) => {
+const LoginInput = ({ id, label, ...restProps }: InputProps) => {
   return (
     <InputWrapper>
       <Label htmlFor={id}>{label}</Label>
-      <Input
-        id={id}
-        name={name}
-        type={type}
-        value={value}
-        placeholder={placeholder}
-        onChange={onChange}
-        autoComplete={autoComplete}
-        required
-      />
+      <Input id={id} {...restProps} />
     </InputWrapper>
   )
 }
 
-const LoginSubmitButton = ({ onClick, children }: ButtonProps) => {
-  return (
-    <Button type="submit" onClick={onClick}>
-      {children}
-    </Button>
-  )
+const LoginSubmitButton = ({ children }: ButtonProps) => {
+  return <Button type="submit">{children}</Button>
 }
 Login.Form = LoginForm
 Login.Error = LoginError

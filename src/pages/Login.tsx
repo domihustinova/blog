@@ -13,7 +13,7 @@ const LoginPage = () => {
   const dispatch = useAuthDispatch()
   const navigate = useNavigate()
 
-  const handleLogin = async (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleLogin = async (event: React.SyntheticEvent<EventTarget>) => {
     event.preventDefault()
 
     try {
@@ -31,7 +31,7 @@ const LoginPage = () => {
       <Login>
         <Login.Title>Log In</Login.Title>
         {errorMessage && <Login.Error error={errorMessage.message} />}
-        <Login.Form>
+        <Login.Form onSubmit={handleLogin} method="POST">
           <Login.Input
             id="username"
             name="Username"
@@ -41,6 +41,7 @@ const LoginPage = () => {
             placeholder="johnDoe"
             onChange={({ target }) => setUsername(target.value)}
             autoComplete="off"
+            required
           />
           <Login.Input
             id="password"
@@ -51,10 +52,9 @@ const LoginPage = () => {
             placeholder="**********"
             onChange={({ target }) => setPassword(target.value)}
             autoComplete="off"
+            required
           />
-          <Login.SubmitButton onClick={handleLogin}>
-            {loading ? 'Loading' : 'Log in'}
-          </Login.SubmitButton>
+          <Login.SubmitButton type="submit">{loading ? 'Loading' : 'Log in'}</Login.SubmitButton>
         </Login.Form>
       </Login>
     </>
