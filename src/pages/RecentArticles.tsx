@@ -1,12 +1,21 @@
 import { useState, useEffect } from 'react'
-import axios from 'axios'
+import axios, { AxiosError, AxiosResponse } from 'axios'
 
 import NavbarContainer from '../containers/Navbar'
 import ArticlePreviewContainer from '../containers/ArticlePreview'
 import ArticlePreview from '../components/ArticlePreview/ArticlePreview'
 
+type Article = {
+  articleId: string
+  title: string
+  perex: string
+  imageId: string
+  createdAt: string
+  lastUpdatedAt: string
+}
+
 const RecentArticlesPage = () => {
-  const [articles, setArticles] = useState([])
+  const [articles, setArticles] = useState<Article[]>([])
   useEffect(() => {
     getArticles()
   }, [])
@@ -21,9 +30,12 @@ const RecentArticlesPage = () => {
     }
 
     try {
-      const response = await axios.get(url, config)
-      setArticles(response.data.items.sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1)))
-    } catch (error: any) {
+      const response: AxiosResponse = await axios.get(url, config)
+      setArticles(
+        response.data.items.sort((a: Article, b: Article) => (a.createdAt < b.createdAt ? 1 : -1)),
+      )
+    } catch (err) {
+      const error = err as AxiosError
       console.log(error)
     }
   }

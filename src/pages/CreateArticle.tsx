@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import axios from 'axios'
+import axios, { AxiosResponse } from 'axios'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 
@@ -9,20 +9,27 @@ import { Routes } from '../utils/types'
 import CreateArticle from '../components/CreateArticle/CreateArticle'
 import NavbarContainer from '../containers/Navbar'
 
+type CreateArticlePayload = {
+  title: string
+  perex: string
+  content: string
+  imageId: string
+}
+
 const CreateArticlePage = () => {
-  const [title, setTitle] = useState('')
-  const [perex, setPerex] = useState('')
-  const [content, setContent] = useState('')
-  const [image, setImage] = useState('')
-  const [selectedImage, setSelectedImage] = useState()
-  const [displayPreview, setDisplayPreview] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState('')
+  const [title, setTitle] = useState<string>('')
+  const [perex, setPerex] = useState<string>('')
+  const [content, setContent] = useState<string>('')
+  const [image, setImage] = useState<string>('')
+  const [selectedImage, setSelectedImage] = useState<File>()
+  const [displayPreview, setDisplayPreview] = useState<boolean>(false)
+  const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [error, setError] = useState<string>('')
   const { ua_token } = useAuthState()
   const navigate = useNavigate()
 
-  const handleImageUpload = e => {
-    setSelectedImage(e.target.files[0])
+  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSelectedImage(event.target.files[0])
 
     const reader = new FileReader()
     reader.onload = () => {
@@ -30,10 +37,10 @@ const CreateArticlePage = () => {
         setImage(reader.result.toString())
       }
     }
-    reader.readAsDataURL(e.target.files[0])
+    reader.readAsDataURL(event.target.files[0])
   }
 
-  const handlePublishArticle = async event => {
+  const handlePublishArticle = async (event: React.SyntheticEvent<EventTarget>) => {
     event.preventDefault()
 
     setIsLoading(true)
@@ -45,9 +52,9 @@ const CreateArticlePage = () => {
 
     const formData = new FormData()
     formData.append('image', selectedImage)
-    const imageId = await uploadImage(formData)
+    const imageId: string = await uploadImage(formData)
 
-    const payload = {
+    const payload: CreateArticlePayload = {
       title,
       perex,
       content,
@@ -59,7 +66,7 @@ const CreateArticlePage = () => {
     navigate(Routes.MyArticles)
   }
 
-  const uploadImage = async payload => {
+  const uploadImage = async (payload: FormData) => {
     const url = `https://fullstack.exercise.applifting.cz/images`
 
     const config = {
@@ -70,14 +77,14 @@ const CreateArticlePage = () => {
     }
 
     try {
-      const response = await axios.post(url, payload, config)
+      const response: AxiosResponse = await axios.post(url, payload, config)
       return response.data[0].imageId
     } catch (error) {
       console.log(error)
     }
   }
 
-  const createArticle = async payload => {
+  const createArticle = async (payload: CreateArticlePayload) => {
     const url = `https://fullstack.exercise.applifting.cz/articles`
 
     const config = {

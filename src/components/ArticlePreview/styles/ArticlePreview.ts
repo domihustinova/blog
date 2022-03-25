@@ -12,11 +12,13 @@ export const Container = styled.div`
   margin-bottom: 32px;
   display: flex;
   flex-direction: column;
+  padding: 8px;
 
   @media ${DEVICES_MIN.TABLET} {
     width: 860px;
     height: 244px;
     flex-direction: row;
+    padding: 0px;
   }
 `
 
@@ -42,6 +44,7 @@ export const PageWrapper = styled.div`
   @media ${DEVICES_MIN.TABLET} {
     padding: 0px;
     width: 860px;
+    align-items: flex-start;
   }
 `
 
@@ -112,6 +115,7 @@ export const Image = styled.div`
   margin: 16px auto;
 
   @media ${DEVICES_MIN.TABLET} {
+    margin: 0px;
     margin-right: 24px;
   }
 `

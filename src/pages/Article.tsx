@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import axios from 'axios'
+import axios, { AxiosError, AxiosResponse } from 'axios'
 import { format } from 'date-fns'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
@@ -16,7 +16,16 @@ type Article = {
   content: string
   imageId: string
   lastUpdatedAt: string
-  comments: any
+  comments: Comment[]
+}
+
+type Comment = {
+  commentId: string
+  articleId: string
+  author: string
+  content: string
+  postedAt: string
+  score: number
 }
 
 const ArticlePage = () => {
@@ -39,10 +48,11 @@ const ArticlePage = () => {
     }
 
     try {
-      const response = await axios.get(url, config)
+      const response: AxiosResponse = await axios.get(url, config)
       setArticle(response.data)
       getImage(response.data.imageId)
-    } catch (error: any) {
+    } catch (err) {
+      const error = err as AxiosError
       console.log(error)
     }
   }
@@ -65,7 +75,8 @@ const ArticlePage = () => {
         const base64data = reader.result.toString()
         setImage(base64data)
       }
-    } catch (error: any) {
+    } catch (err) {
+      const error = err as AxiosError
       console.log(error)
     }
   }

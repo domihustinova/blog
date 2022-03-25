@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { AxiosError } from 'axios'
 import { format } from 'date-fns'
 
 import ArticlePreview from '../components/ArticlePreview/ArticlePreview'
@@ -36,7 +37,8 @@ const ArticlePreviewContainer = ({ id, imageId, created, perex, title }: Props) 
         const base64data = reader.result.toString()
         setImage(base64data)
       }
-    } catch (error: any) {
+    } catch (err) {
+      const error = err as AxiosError
       console.log(error)
     }
   }

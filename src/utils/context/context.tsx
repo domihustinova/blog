@@ -1,10 +1,10 @@
-import { createContext, ReactNode, useContext, useReducer } from 'react'
+import { createContext, Dispatch, ReactNode, useContext, useReducer } from 'react'
 
 import { AuthReducer, initialState } from './reducer'
-import { AuthState } from '../types'
+import { AuthAction, AuthState } from '../types'
 
-export const AuthStateContext = createContext<AuthState>({} as AuthState)
-export const AuthDispatchContext = createContext({})
+export const AuthStateContext = createContext<AuthState>(initialState)
+export const AuthDispatchContext = createContext<Dispatch<AuthAction>>(() => null)
 
 export function useAuthState() {
   const context = useContext(AuthStateContext)
